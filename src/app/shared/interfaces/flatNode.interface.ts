@@ -9,6 +9,7 @@ export interface FlatNode {
   parentNodeUid: string | null;
   color: string;
   icon: string;
-  nodeType: 'Folder' | 'Document';
+  nodeType?: 'Folder' | 'Document';
   peopleWithAccess?: Owner[] | null;
+  children: FlatNode[];
 }

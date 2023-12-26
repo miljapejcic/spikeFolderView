@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NodeTransformService } from '../shared/services/nodeTransform.service';
 
 @Component({
   selector: 'folder-view',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FolderViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private nodeTransformService: NodeTransformService) { }
 
   ngOnInit() {
+    this.nodeTransformService.logArray()
   }
 
 }
