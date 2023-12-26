@@ -1,7 +1,7 @@
 import { Owner } from './owner.interface';
 
 export interface FlatNode {
-  uid: string;
+  uid: string | null;
   name: string;
   createDateTime: string;
   path: string; //ne treba
@@ -10,5 +10,5 @@ export interface FlatNode {
   color: string;
   icon: string;
   nodeType: 'Folder' | 'Document';
-  peopleWithAccess?: Owner[];
+  peopleWithAccess?: Owner[] | null;
 }
