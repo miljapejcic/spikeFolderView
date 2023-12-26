@@ -62,4 +62,9 @@ export class NodeTransformService implements OnInit {
     this.treeNodes[0].children = hierarchicalTree;
     console.log(this.treeNodes);
   }
+
+  getMyDriveData(){
+    this.logArray();
+    return this.treeNodes;
+  }
 }

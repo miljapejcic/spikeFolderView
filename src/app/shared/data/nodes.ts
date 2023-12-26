@@ -64,6 +64,22 @@ export const FlatNodes: FlatNode[] = [
       "children":[]
     },
     {
+      "uid": "7",
+      "name": "Folder 4",
+      "createDateTime": "2023-05-20T16:00:00",
+      "path": "/My Drive/Folder3/Folder 4",
+      "owner": { "username": "user2", "uid": "u2" },
+      "parentNodeUid": "5",
+      "color": "#f39c12",
+      "icon": "folder",
+      "nodeType": "Folder",
+      "peopleWithAccess": [
+        { "username": "user1", "uid": "u1" },
+        { "username": "user3", "uid": "u3" }
+      ],
+      "children":[]
+    },
+    {
       "uid": "5",
       "name": "Folder 3",
       "createDateTime": "2023-05-20T16:00:00",
