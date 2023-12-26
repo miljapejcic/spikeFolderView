@@ -5,10 +5,9 @@ import { Owner } from './owner.interface';
 export interface MYTreeNode{
   expandable: boolean;
   level: number;
-  uid: string | null;
+  uid: number | null;
   name: string;
   createDateTime: string;
-  path: string; //ne treba
   owner: Owner;
   parentNodeUid: string | null;
   color: string;

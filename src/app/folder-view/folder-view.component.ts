@@ -13,8 +13,12 @@ import { MYTreeNode } from '../shared/interfaces/treeNode.interface';
 export class FolderViewComponent implements OnInit {
 
   constructor(private nodeTransformService: NodeTransformService) { 
+    const startTime = new Date();
     this.dataSource.data = this.nodeTransformService.getMyDriveData();
+    const endTime = new Date();
+    const elapsedTimeInSeconds = (endTime.getTime() - startTime.getTime()) / 1000;
 
+    console.log(elapsedTimeInSeconds);
   }
 
   ngOnInit() {
@@ -26,7 +30,6 @@ export class FolderViewComponent implements OnInit {
       expandable: node.nodeType === 'Folder',  //expandable: !!node.children && node.children.length > 0,
       level: level,
       name: node.name,
-      path: node.path,
       uid: node.uid,
       createDateTime: node.createDateTime,
       owner: node.owner,

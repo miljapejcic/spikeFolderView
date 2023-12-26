@@ -18,7 +18,6 @@ export class NodeTransformService implements OnInit {
     uid: null,
     name: 'My Drive',
     createDateTime: new Date().toDateString(),
-    path: 'My Drive/',
     owner: this.currentUser,
     parentNodeUid: null,
     color: '',
@@ -49,7 +48,7 @@ export class NodeTransformService implements OnInit {
 
     console.log('Shared With Me', filteredNodesSharedWith);
 
-    const buildTree = (nodes: FlatNode[], parentNodeUid: string | null): FlatNode[] => {
+    const buildTree = (nodes: FlatNode[], parentNodeUid: number | null): FlatNode[] => {
       return nodes
         .filter(node => node.parentNodeUid === parentNodeUid)
         .map(node => ({
