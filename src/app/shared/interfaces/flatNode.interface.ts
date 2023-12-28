@@ -1,9 +1,9 @@
 import { Owner } from './owner.interface';
 
 export interface FlatNode {
-  uid: number | null;
+  uid: string | null;
   name: string;
-  createDateTime: string;
+  createDateTimeUTC: string;
   owner: Owner;
   parentNodeUid: string | null;
   color: string;

@@ -1,18 +1,66 @@
-<mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+<mat-tree [dataSource]="dataSourceMyDrive" [treeControl]="treeControlMyDrive">
   <!-- This is the tree node template for leaf nodes -->
   <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
     <!-- use a disabled button to provide padding for tree leaf -->
     <button mat-icon-button disabled></button>
-    {{node.name}}
+    <button (click)="test(node)">
+      {{node.name}}
+    </button>
   </mat-tree-node>
   <!-- This is the tree node template for expandable nodes -->
-  <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChildMyDrive" matTreeNodePadding>
     <button mat-icon-button matTreeNodeToggle
             [attr.aria-label]="'Toggle ' + node.name">
       <mat-icon class="mat-icon-rtl-mirror">
-        {{treeControl.isExpanded(node) ? 'V' : '>'}}
+        {{treeControlMyDrive.isExpanded(node) ? 'V' : '>'}}
       </mat-icon>
     </button>
-    {{node.name}}
+    <button (click)="test(node)">
+      {{node.name}}
+    </button>
+  </mat-tree-node>
+</mat-tree>
+<mat-tree [dataSource]="dataSourceSharedBy" [treeControl]="treeControlSharedBy">
+  <!-- This is the tree node template for leaf nodes -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <!-- use a disabled button to provide padding for tree leaf -->
+    <button mat-icon-button disabled></button>
+    <button (click)="test(node)">
+      {{node.name}}
+    </button>
+  </mat-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChildSharedBy" matTreeNodePadding>
+    <button mat-icon-button matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControlSharedBy.isExpanded(node) ? 'V' : '>'}}
+      </mat-icon>
+    </button>
+    <button (click)="test(node)">
+      {{node.name}}
+    </button>
+  </mat-tree-node>
+</mat-tree>
+<mat-tree [dataSource]="dataSourceSharedWith" [treeControl]="treeControlSharedWith">
+  <!-- This is the tree node template for leaf nodes -->
+  <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+    <!-- use a disabled button to provide padding for tree leaf -->
+    <button mat-icon-button disabled></button>
+    <button (click)="test(node)">
+      {{node.name}}
+    </button>
+  </mat-tree-node>
+  <!-- This is the tree node template for expandable nodes -->
+  <mat-tree-node *matTreeNodeDef="let node;when: hasChildSharedWith" matTreeNodePadding>
+    <button mat-icon-button matTreeNodeToggle
+            [attr.aria-label]="'Toggle ' + node.name">
+      <mat-icon class="mat-icon-rtl-mirror">
+        {{treeControlSharedWith.isExpanded(node) ? 'V' : '>'}}
+      </mat-icon>
+    </button>
+    <button (click)="test(node)">
+      {{node.name}}
+    </button>
   </mat-tree-node>
 </mat-tree>

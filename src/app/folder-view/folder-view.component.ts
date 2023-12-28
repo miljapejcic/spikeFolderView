@@ -13,50 +13,91 @@ import { MYTreeNode } from '../shared/interfaces/treeNode.interface';
 export class FolderViewComponent implements OnInit {
 
   constructor(private nodeTransformService: NodeTransformService) { 
-    const startTime = new Date();
-    this.dataSource.data = this.nodeTransformService.getMyDriveData();
-    const endTime = new Date();
-    const elapsedTimeInSeconds = (endTime.getTime() - startTime.getTime()) / 1000;
-
-    console.log(elapsedTimeInSeconds);
+    this.dataSourceMyDrive.data = this.nodeTransformService.getMyDriveData();
+    this.dataSourceSharedBy.data = this.nodeTransformService.getSharedByData();
+    this.dataSourceSharedWith.data = this.nodeTransformService.getSharedWithData();
   }
 
   ngOnInit() {
     // this.nodeTransformService.logArray()
   }
 
-  private _transformer = (node: FlatNode, level: number) :MYTreeNode => {
+  //tree transformer for all three trees (my drive, shared by, shared with)
+  private _transformer = (node: FlatNode, level: number): MYTreeNode => {
     return {
-      expandable: node.nodeType === 'Folder',  //expandable: !!node.children && node.children.length > 0,
+      expandable: node.nodeType === 'Folder',
       level: level,
-      name: node.name,
       uid: node.uid,
-      createDateTime: node.createDateTime,
+      name: node.name,
+      createDateTimeUTC: node.createDateTimeUTC,
       owner: node.owner,
       parentNodeUid: node.parentNodeUid,
       color: node.color,
       icon: node.icon,
+      nodeType: node.nodeType,
       peopleWithAccess: node.peopleWithAccess,
       children: node.children,
-      nodeType: node.nodeType
     };
   };
 
-  treeControl = new FlatTreeControl<MYTreeNode>(
+  //My Drive
+  treeControlMyDrive = new FlatTreeControl<MYTreeNode>(
     node => node.level,
     node => node.expandable,
   );
 
-  treeFlattener = new MatTreeFlattener(
+  treeFlattenerMyDrive = new MatTreeFlattener(
     this._transformer,
     (node) => node.level,
     (node) => node.expandable,
     (node) => node.children,
   );
 
-  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+  dataSourceMyDrive = new MatTreeFlatDataSource(this.treeControlMyDrive, this.treeFlattenerMyDrive);
 
 
-  hasChild = (_: number, node: MYTreeNode) => node.expandable;
+  hasChildMyDrive = (_: number, node: MYTreeNode) => node.expandable;
+
+
+  //Shared By Me
+  treeControlSharedBy = new FlatTreeControl<MYTreeNode>(
+    node => node.level,
+    node => node.expandable,
+  );
+
+  treeFlattenerSharedBy = new MatTreeFlattener(
+    this._transformer,
+    (node) => node.level,
+    (node) => node.expandable,
+    (node) => node.children,
+  );
+
+  dataSourceSharedBy = new MatTreeFlatDataSource(this.treeControlSharedBy, this.treeFlattenerSharedBy);
+
+
+  hasChildSharedBy = (_: number, node: MYTreeNode) => node.expandable;
+
+
+  //Shared With Me
+  treeControlSharedWith = new FlatTreeControl<MYTreeNode>(
+    node => node.level,
+    node => node.expandable,
+  );
+
+  treeFlattenerSharedWith = new MatTreeFlattener(
+    this._transformer,
+    (node) => node.level,
+    (node) => node.expandable,
+    (node) => node.children,
+  );
+
+  dataSourceSharedWith = new MatTreeFlatDataSource(this.treeControlSharedWith, this.treeFlattenerSharedWith);
+
+
+  hasChildSharedWith = (_: number, node: MYTreeNode) => node.expandable;
+
+  test(node: any){
+    console.log(node);
+  }
 
 }
