@@ -19,7 +19,6 @@ export class FolderViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.nodeTransformService.logArray()
   }
 
   //tree transformer for all three trees (my drive, shared by, shared with)
@@ -40,6 +39,8 @@ export class FolderViewComponent implements OnInit {
     };
   };
 
+  hasChild = (_: number, node: MYTreeNode) => node.expandable;
+
   //My Drive
   treeControlMyDrive = new FlatTreeControl<MYTreeNode>(
     node => node.level,
@@ -54,9 +55,6 @@ export class FolderViewComponent implements OnInit {
   );
 
   dataSourceMyDrive = new MatTreeFlatDataSource(this.treeControlMyDrive, this.treeFlattenerMyDrive);
-
-
-  hasChildMyDrive = (_: number, node: MYTreeNode) => node.expandable;
 
 
   //Shared By Me
@@ -75,9 +73,6 @@ export class FolderViewComponent implements OnInit {
   dataSourceSharedBy = new MatTreeFlatDataSource(this.treeControlSharedBy, this.treeFlattenerSharedBy);
 
 
-  hasChildSharedBy = (_: number, node: MYTreeNode) => node.expandable;
-
-
   //Shared With Me
   treeControlSharedWith = new FlatTreeControl<MYTreeNode>(
     node => node.level,
@@ -92,9 +87,6 @@ export class FolderViewComponent implements OnInit {
   );
 
   dataSourceSharedWith = new MatTreeFlatDataSource(this.treeControlSharedWith, this.treeFlattenerSharedWith);
-
-
-  hasChildSharedWith = (_: number, node: MYTreeNode) => node.expandable;
 
   test(node: any){
     console.log(node);

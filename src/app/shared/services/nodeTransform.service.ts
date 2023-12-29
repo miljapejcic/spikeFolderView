@@ -135,6 +135,7 @@ export class NodeTransformService {
         (node) =>
           node.peopleWithAccess?.some((person) => person.uid === user.uid)
       );
+      //Had to create a copy of objects because any change on the filteredNodesForUserFolder nodes will trigger change in the original array (because the objects are passed by reference)
       const filteredNodesForUserFolderCopy = filteredNodesForUserFolder.map(
         (node) => ({
           ...node,
@@ -158,6 +159,7 @@ export class NodeTransformService {
 
   //SHARED WITH
 
+  //Method that extracts distinct users that have shared with the current user and creates folders for those users which will contain the shared nodes
   getSharedWithMeUserFolders() {
     const distinctUsersSet = new UsersSet<Owner>((owner) => owner.uid);
     this.filteredNodesSharedWith.forEach((node) => {
@@ -193,6 +195,7 @@ export class NodeTransformService {
       const filteredNodesForUserFolder = this.filteredNodesSharedWith.filter(
         (node) => node.owner.uid === user.uid
       );
+      //Had to create a copy of objects because any change on the filteredNodesForUserFolder nodes will trigger change in the original array (because the objects are passed by reference)
       const filteredNodesForUserFolderCopy = filteredNodesForUserFolder.map(
         (node) => ({
           ...node,
